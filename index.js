@@ -1,6 +1,6 @@
 const url = "https://teclead.de/recruiting/radios";
 const radios = document.querySelector(".radios");
-
+let counter = 0;
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
@@ -39,12 +39,14 @@ fetch(url)
           <p>${parent.dataset.radio}</p>
           `;
         bottom.innerHTML = bottomText;
-        if (lastTwoClick[0] === lastTwoClick[1]) {
+        if ((lastTwoClick[0] === lastTwoClick[1]) && (counter % 2 == 0)) {
           display.classList.toggle("hidden");
           bottom.innerHTML = '';
-
+          counter += 1;
+          console.log(counter)
+        } else {
+          counter = 0;
         }
-        console.log(counter)
       });
     });
   });
